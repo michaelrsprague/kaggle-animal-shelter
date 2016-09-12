@@ -1,7 +1,8 @@
 import csv
+import numpy as np
+import os.path
 import features
 import features_datetime
-import numpy as np
 
 def extract_datetime_features(data, date_time):
         
@@ -164,22 +165,26 @@ def ExtractOutcomes(file_path):
     
     return outcome
 
-file_path = r'C:\Users\Nikki\Documents\Data Science\Kaggle\Animal Shelter\Data\train.csv'
-file_test = r'C:\Users\Nikki\Documents\Data Science\Kaggle\Animal Shelter\Data\test.csv'
+data_folder = r'C:\GitRepository\kaggle-animal-shelter\Data'
 
-outcome = ExtractOutcomes(file_path)
-data = ExtractFeatures(file_path)
-test = ExtractTestFeatures(file_test)
+path_train = os.path.join(data_folder, 'train.csv')
+path_test = os.path.join(data_folder, 'test.csv')
+
+#outcome is the reported classification
+outcome = ExtractOutcomes(path_train)
+data = ExtractFeatures(path_train)
+
+test = ExtractTestFeatures(path_test)
 
 data_array = np.array(data)
 outcome_array = np.array(outcome)
 test_array = np.array(test)
 
-features_path = r'C:\Users\Nikki\Documents\Data Science\Kaggle\Animal Shelter\Data\features'
+features_path = os.path.join(data_folder, 'features')
 np.save(features_path, data_array)
 
-outcome_path = r'C:\Users\Nikki\Documents\Data Science\Kaggle\Animal Shelter\Data\outcome'
+outcome_path = os.path.join(data_folder, 'outcome')
 np.save(outcome_path, outcome_array)
 
-test_path = r'C:\Users\Nikki\Documents\Data Science\Kaggle\Animal Shelter\Data\test'
+test_path = os.path.join(data_folder, 'test')
 np.save(test_path, test_array)
