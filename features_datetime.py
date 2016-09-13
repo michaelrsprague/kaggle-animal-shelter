@@ -1,79 +1,42 @@
 import datetime
 import numpy as np
 
-def extract_date_time(reader, number_column):
+def extract_date_time(data_input, number_column):
     
-    feature = []
-
-    for row in reader:
-        feature.append(row[number_column])
+    feature = [row[number_column] for row in data_input]
     
     #remove header
     feature.pop(0)
     
-    feature_numbered = []
-    
     format_datetime = "%Y-%m-%d  %H:%M:%S"
-    
-    for data in feature:
-        dateandtime = datetime.datetime.strptime(data, format_datetime)
-        feature_numbered.append(dateandtime)
+    feature_numbered = [datetime.datetime.strptime(data, format_datetime)
+                        for data in feature]    
         
     return feature_numbered
     
 def extract_year(date_time):
     
-    year = []
-    
-    for dt in date_time:
-        year.append(dt.year)
-    
-    return year
+    return [dt.year for dt in date_time]
     
 def extract_month(date_time):
     
-    month = []
-    
-    for dt in date_time:
-        month.append(dt.month)
-    
-    return month
+    return [dt.month for dt in date_time]
     
 def extract_day(date_time):
     
-    day = []
-    
-    for dt in date_time:
-        day.append(dt.day)
-    
-    return day
+    return [dt.day for dt in date_time]
     
 def extract_hour(date_time):
     
-    hour = []
-    
-    for dt in date_time:
-        hour.append(dt.hour)
-    
-    return hour
+    return [dt.hour for dt in date_time]
 
-def extract_minute(date_time):
-    
-    minute = []
-    
-    for dt in date_time:
-        minute.append(dt.minute)
-    
-    return minute
+def extract_minute(date_time):  
+   
+    return [dt.minute for dt in date_time]
 
 def extract_dayweek(date_time):
     
-    dayweek = []
-    
-    for dt in date_time:
-        dayweek.append(dt.weekday())
-    
-    return dayweek
+    return [dt.weekday() for dt in date_time]
     
 def extract_sametime(date_time):
     
