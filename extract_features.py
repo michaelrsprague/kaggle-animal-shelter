@@ -45,15 +45,13 @@ def extract_features(file_path):
     file_id = open(file_path)
     reader = csv.reader(file_id)
     
-    data = list(reader)
-    file_id.seek(0)
+    data = list(reader)       
+    file_id.close()
     
     data_features = []
     
     #strip out category label of data
     header = data[0]
-    
-    print header
     
     #animal type
     animal_type = features.repeat_string_feature(data, header.index('AnimalType'))
@@ -68,13 +66,12 @@ def extract_features(file_path):
     data_features.append(animal_intact)
 
     #breed
-    animal_breed, second_animal_breed = features.split_string_feature(reader, header.index('Breed'), '/', True)
+    animal_breed, second_animal_breed = features.split_string_feature(data, header.index('Breed'), '/', True)
     data_features.append(animal_breed)
     data_features.append(second_animal_breed)
-    file_id.seek(0)
 
     #colour
-    animal_colour, second_animal_colour = features.split_string_feature(reader, header.index('Color'), '/', False)
+    animal_colour, second_animal_colour = features.split_string_feature(data, header.index('Color'), '/', False)
     data_features.append(animal_colour)
     data_features.append(second_animal_colour)    
      
@@ -95,8 +92,7 @@ def extract_features(file_path):
     #date/time outcome
     date_time = features_datetime.extract_date_time(data, header.index('DateTime'))
     data_features = extract_datetime_features(data_features, date_time)
-    
-    file_id.close()
+
     return data_features
 
 def extract_outcomes(file_path):

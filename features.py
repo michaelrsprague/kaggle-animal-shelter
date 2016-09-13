@@ -24,7 +24,7 @@ def repeat_string_feature(data, number_column):
     
     return feature_numbered
     
-def split_string_feature(reader, number_column, split_char, flag_breed):
+def split_string_feature(data, number_column, split_char, flag_breed):
 
     feature_unique = set()
     feature_numbered = []
@@ -33,7 +33,7 @@ def split_string_feature(reader, number_column, split_char, flag_breed):
 
     index_feature = 1
     
-    for index, row in enumerate(reader):
+    for index, row in enumerate(data):
         
         if (index != 0):
             entry = row[number_column]
