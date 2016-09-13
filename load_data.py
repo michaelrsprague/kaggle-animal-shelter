@@ -17,11 +17,11 @@ outcome_array = np.array(outcome)
 test_array = np.array(test)
 
 #save data to file for future analysis
-features_path = os.path.join(data_folder, 'features2')
+features_path = os.path.join(data_folder, 'features')
 np.save(features_path, data_array)
 
-outcome_path = os.path.join(data_folder, 'outcome2')
+outcome_path = os.path.join(data_folder, 'outcome')
 np.save(outcome_path, outcome_array)
 
-test_path = os.path.join(data_folder, 'test2')
+test_path = os.path.join(data_folder, 'test')
 np.save(test_path, test_array)
