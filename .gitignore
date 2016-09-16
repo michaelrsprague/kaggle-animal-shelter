@@ -1,1 +1,4 @@
 *.pyc
+Data/features.npy
+Data/outcome.npy
+Data/test.npy
